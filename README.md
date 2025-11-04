@@ -1,21 +1,68 @@
-﻿![alt text](./assets/images/readme\_head.png)
+﻿# 🎯 Hangman
 
-# Hangman 
+A clean, responsive Hangman game built with **React + TypeScript + Vite**.  
+It fetches random words from the [Random Word API](http://random-word-api.herokuapp.com/home) and challenges you to guess the word before you run out of lives!
 
-Hangman game that pulls a random word from the [Random Word API](http://random-word-api.herokuapp.com/home). 
-Can you guess the word correctly before your lives run out? 
+Designed for **desktop and mobile**, with smooth UI and game feedback.
 
-Responsive on PC and Mobile. 
+![Hangman Banner](./assets/images/readme_head.png)
 
-## Instructions
+## 🕹️ Gameplay
 
-Press "Start Game" and click a letter on the displayed keyword to act as your guess.<br>  
-You have 5 lives. If you exhaust all your lives, the game is over. 
+- Press **Start Game**
+- Guess letters using the on-screen keyboard
+- Letters turn ✅ green (correct) or ❌ red (wrong)
+- You have limited lives — run out, and it's game over!
+- Start a new round instantly
 
+## 📂 Project Structure
 
-### Languages/Frameworks Used
+```txt
+HANGMAN/
+├─ .github/
+│  └─ workflows/
+│     └─ deploy.yml        # GitHub Pages deployment pipeline
+├─ assets/                 # Static assets (images, icons)
+├─ src/
+│  ├─ components/
+│  │  ├─ Game/
+│  │  ├─ Header/
+│  │  ├─ Key/
+│  │  ├─ Keyboard/
+│  │  ├─ ResultBanner/
+│  │  ├─ StatusBar/
+│  │  └─ WordDisplay/
+│  ├─ hooks/
+│  │  └─ useHangman.ts     # Main game logic state hook
+│  ├─ styles/
+│  │  └─ globals.css       # Global theme + UI styles
+│  ├─ App.tsx
+│  ├─ main.tsx
+│  ├─ types.ts
+│  └─ vite-env.d.ts
+├─ index.html
+├─ tsconfig.json
+├─ vite.config.ts
+└─ package.json
+```
 
-* TypeScript
-* HTML 5
-* CSS 3/SCSS
-* [Random Word API](http://random-word-api.herokuapp.com/home)
+## 🚀 Tech Stack
+
+- TypeScript
+- React
+- Vite
+- HTML 5
+- CSS 3
+- [Random Word API](http://random-word-api.herokuapp.com/home)
+
+## 📦 Development
+
+```
+npm install
+npm run dev
+npm run build
+```
+
+## 🌐 Deployment
+
+Automatically deployed to GitHub Pages via Actions (see /github/workflows/deploy.yml).

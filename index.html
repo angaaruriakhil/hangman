@@ -1,51 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hangman</title>
-  <link rel="stylesheet" href="styles.css"/> 
-</head>
-<body>
-  <h1 class = "game-title"> Hangman </h1>
-  <div class="game-start"> Start Game </div>
-    <div class="word">
-      <!-- generate using js -->
-    </div>
-    <div class="game-data"> LIVES: 9 </div>
-      <div class="first-half"> 
-        <span class = "letter"> A </span>
-        <span class = "letter"> B </span>
-        <span class = "letter"> C </span>
-        <span class = "letter"> D </span>
-        <span class = "letter"> E </span>
-        <span class = "letter"> F </span>
-        <span class = "letter"> G </span>
-        <span class = "letter"> H </span>
-        <span class = "letter"> I </span>
-        <span class = "letter"> J </span>
-        <span class = "letter"> K </span>
-        <span class = "letter"> L </span>
-        <span class = "letter"> M </span>
-      </div>
-      <div class="second-half"> 
-        <span class = "letter"> N </span>
-        <span class = "letter"> O </span>
-        <span class = "letter"> P </span>
-        <span class = "letter"> Q </span>
-        <span class = "letter"> R </span>
-        <span class = "letter"> S </span>
-        <span class = "letter"> T </span>
-        <span class = "letter"> U </span>
-        <span class = "letter"> V </span>
-        <span class = "letter"> W </span>
-        <span class = "letter"> X </span>
-        <span class = "letter"> Y </span>
-        <span class = "letter"> Z </span>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
-
-</body>
-<script src="main.js"></script> 
+    <title>Hangman</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
