@@ -1,0 +1,18 @@
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  color: var(--muted);
+  font-size: clamp(0.88rem, 2.5vw, 0.95rem);
+  min-width: 0;
+}
+.miss {
+  color: var(--warn);
+}
+
+@media (max-width: 560px) {
+  .status {
+    font-size: 0.9rem;
+    gap: 8px 14px;
+  }
+}

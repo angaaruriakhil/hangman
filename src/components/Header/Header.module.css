@@ -1,0 +1,122 @@
+.header {
+  width: 100%;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.4rem, 1rem + 1vw, 2rem);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: calc(var(--radius) - 4px);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--panel-2), black 6%),
+    color-mix(in oklab, var(--panel-2), black 10%)
+  );
+  border: 1px solid color-mix(in oklab, var(--border), black 12%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 6px 16px rgba(0, 0, 0, 0.15);
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.divider {
+  width: 1px;
+  height: 22px;
+  background: color-mix(in oklab, var(--border), white 4%);
+  opacity: 0.6;
+}
+
+.field {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+}
+.label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.input {
+  width: 72px;
+  height: 34px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--panel), black 2%);
+  color: var(--text);
+}
+
+.action {
+  min-width: 84px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  min-width: 8px;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.life {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--panel-2), black 8%);
+  border: 1px solid var(--border);
+  opacity: 0.65;
+}
+.lifeFull {
+  background: var(--ok);
+  border-color: color-mix(in oklab, var(--ok), black 10%);
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .fieldWord {
+    margin-left: auto;
+  }
+
+  .action {
+    flex-basis: 100%;
+    order: 3;
+    height: 40px;
+    font-weight: 700;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .dots {
+    flex-basis: 100%;
+    justify-content: center;
+    order: 4;
+  }
+
+  .spacer {
+    display: none;
+  }
+}
