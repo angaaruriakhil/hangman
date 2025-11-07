@@ -48,7 +48,7 @@ export default function Header({
         <span className={s.divider} aria-hidden="true" />
 
         <label className={`${s.field} ${s.fieldWord}`} aria-disabled={disabled}>
-          <span className={s.label}>Word length</span>
+          <span className={s.label}>Length</span>
           <input
             className={s.input}
             type="number"
