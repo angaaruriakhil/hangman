@@ -1,7 +1,7 @@
 ﻿# 🎯 Hangman
 
 A clean, responsive Hangman game built with **React + TypeScript + Vite**.  
-It fetches random words from the [Random Word API](http://random-word-api.herokuapp.com/home) and challenges you to guess the word before you run out of lives!
+It fetches random words from the [datamuse API](https://www.datamuse.com/api/) and challenges you to guess the word before you run out of lives!
 
 Designed for **desktop and mobile**, with smooth UI and game feedback.
 
@@ -53,7 +53,7 @@ HANGMAN/
 - Vite
 - HTML 5
 - CSS 3
-- [Random Word API](http://random-word-api.herokuapp.com/home)
+- [datamuse API](https://www.datamuse.com/api/)
 
 ## 📦 Development
 

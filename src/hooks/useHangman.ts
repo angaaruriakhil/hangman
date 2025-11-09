@@ -8,7 +8,7 @@ import type {
 
 const DEFAULT_MAX_LIVES = 6;
 const ENV_API = import.meta.env.VITE_WORD_API as string | undefined;
-const BASE_API = ENV_API || "https://random-word-api.herokuapp.com/word";
+const BASE_API = ENV_API || "https://api.datamuse.com/words";
 
 function normalizeWord(w: string) {
   return w.trim().toUpperCase();
@@ -18,20 +18,30 @@ async function fetchRandomWord(
   length?: number,
   base = BASE_API
 ): Promise<string> {
-  // Build URL with ?number=1 and optional &length=
   const url = new URL(base);
-  url.searchParams.set("number", "1");
-  if (length && Number.isFinite(length)) {
-    url.searchParams.set("length", String(length));
-  }
+
+  // Default length if none provided (pick whatever you like, 5 is common)
+  const targetLength =
+    length && Number.isFinite(length) ? Math.max(3, Math.floor(length)) : 5;
+
+  // Use ? repeated N times to force word length
+  const pattern = "?".repeat(targetLength);
+  url.searchParams.set("sp", pattern);
+  url.searchParams.set("max", "1000"); // ask for up to 1000 candidates
+
   const res = await fetch(url.toString());
-  if (!res.ok) throw new Error(`Word API error: ${res.status}`);
-  const data = await res.json();
-  if (typeof data === "string") return normalizeWord(data);
-  if (Array.isArray(data)) return normalizeWord(String(data[0] || ""));
-  if (typeof (data as any)?.word === "string")
-    return normalizeWord((data as any).word);
-  throw new Error("Unrecognized word API response");
+  if (!res.ok) throw new Error(`Datamuse API error: ${res.status}`);
+
+  const data: { word: string; score: number }[] = await res.json();
+
+  // Fallback if nothing comes back
+  if (!Array.isArray(data) || data.length === 0) {
+    throw new Error("Datamuse returned no words for that pattern");
+  }
+
+  // Pick a random word from the results
+  const choice = data[Math.floor(Math.random() * data.length)].word;
+  return normalizeWord(choice);
 }
 
 export function useHangman(opts?: HangmanOptions) {
@@ -101,6 +111,7 @@ export function useHangman(opts?: HangmanOptions) {
     const letter = raw.toUpperCase();
     setState((prev) => {
       if (prev.status !== "playing") return prev;
+      if (!prev.secretWord) return prev; // ✅ don't process guesses until the word is loaded
       if (!/^[A-Z]$/.test(letter)) return prev;
       if (prev.guesses.has(letter)) return prev;
 
@@ -113,10 +124,12 @@ export function useHangman(opts?: HangmanOptions) {
       ).length;
       const lives = Math.max(prev.maxLives - wrongCount, 0);
 
-      const allRevealed = prev.secretWord
+      const lettersInWord = prev.secretWord
         .split("")
-        .filter((ch) => /[A-Z]/.test(ch))
-        .every((ch) => guesses.has(ch));
+        .filter((ch) => /[A-Z]/.test(ch));
+      const allRevealed =
+        lettersInWord.length > 0 && // ✅ require at least one letter
+        lettersInWord.every((ch) => guesses.has(ch));
 
       let status: GameStatus = prev.status;
       if (allRevealed) status = "won";
